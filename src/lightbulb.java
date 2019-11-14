@@ -22,12 +22,11 @@ public class lightbulb {
             counter++;
         }
 
-        for(int i = 0; i < lightBulbArray.length; i++){
-
+       /* for(int i = 0; i < lightBulbArray.length; i++){
 
             System.out.println(lightBulbArray[i]);
 
-        }
+        }*/
 
 
     }

@@ -32,16 +32,17 @@ public class lightbulb {
             lightSwitchState = true;
         }
 
-        int firstSwitchVal = lightBulbArray[0]; //stores the value of the first switch for later use
-
         for (int i = 0; i <= numSwitches; i++) {
 
-            lightBulbArray[i] = 1 - i;
+            lightBulbArray[i] = 1 - lightBulbArray[i];
             if (bruteForce(lightBulbArray)) {
                 lightSwitchState = true;
+                return;
             }
 
         }
+
+        returnOrginal(lightBulbArray); //returns array to orginal form
 
         for (int j = 1; j <= numSwitches; j++) {
 
@@ -67,6 +68,14 @@ public class lightbulb {
         }
 
         return true;
+
+    }
+
+    public static void returnOrginal(int[] input) {
+
+        for (int i = 0; i <= input.length; i++) {
+            input[i] = 1 - i;
+        }
 
     }
 

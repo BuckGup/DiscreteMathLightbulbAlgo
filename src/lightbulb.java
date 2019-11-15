@@ -28,11 +28,25 @@ public class lightbulb {
 //
 //        }
 
-        if (bruteForce(lightBulbArray)) { //checks to see if the switches are all on without flipping a switch
+        if (isOne(lightBulbArray)){
             lightSwitchState = true;
+
+            System.out.println("The light bulb is on");
+            return;
         }
 
-        for (int i = 0; i <= numSwitches; i++) {
+        for(int l = 0; l <= (2^numSwitches) - 1; l++){
+
+            System.out.println(Integer.toBinaryString(l));
+
+
+        }
+
+
+        //take the binary number and go across each string looking for 1. If you find one take that index and change it of the original switch array
+
+
+        for (int i = 0; i < numSwitches; i++) {
 
             lightBulbArray[i] = 1 - lightBulbArray[i];
             if (bruteForce(lightBulbArray)) {
@@ -42,14 +56,29 @@ public class lightbulb {
 
         }
 
-        returnOrginal(lightBulbArray); //returns array to orginal form
+        returnOrginal(lightBulbArray); //returns array to original form
 
         for (int j = 1; j <= numSwitches; j++) {
-
+            lightBulbArray[j] = 1 - lightBulbArray[j];
+            if(bruteForce(lightBulbArray)){
+                lightSwitchState = true;
+                return;
+            }
 
         }
 
 
+    }
+
+    private static boolean isOne(int[] lightBulbArray) {
+        boolean lightSwitchState;
+        boolean isOne = true;
+        for(int i = 0; i < lightBulbArray.length; i++) {//checks to see if the switches are all on without flipping a switch
+            if(lightBulbArray[i] != 1){
+                isOne = false;
+            }
+        }
+        return isOne;
     }
 
 

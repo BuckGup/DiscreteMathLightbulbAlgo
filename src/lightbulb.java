@@ -15,8 +15,8 @@ public class lightbulb {
         int numSwitches = userIn.nextInt();
         int[] lightBulbArray = new int[numSwitches];
         int[] binaryArray = new int[numSwitches];
+        String initialize = "" //need loop here to intilize it with zeros
         char[] binaryChars;
-
 
         int counter = 0;
 
@@ -36,16 +36,17 @@ public class lightbulb {
         if (isOne(lightBulbArray)) {
             lightSwitchState = true;
             System.out.println("The light bulb is on");
+            System.out.println("It took zero tries!");
             return;
         }
 
-        System.out.println("New line converted");
+        System.out.println("Start of sequence");
         for (int j = 0; j < Math.pow(2, numSwitches); j++) {
 
             String binaryString = Integer.toBinaryString(j); //converts the num of switches to binary
             binaryChars = binaryString.toCharArray(); //converts String to char array for use in loop later
 
-            if(binaryChars[j] == 48) {
+            if(binaryChars[j] == 49) {
                 lightBulbArray[j] = 1 - lightBulbArray[j];
 
                 System.out.println(lightBulbArray[j]);
@@ -60,30 +61,6 @@ public class lightbulb {
         }
 
 
-        //take the binary number and go across each string looking for 1. If you find one take that index and change it of the original switch array
-
-
-       /* for (int i = 0; i < numSwitches; i++) {
-
-            lightBulbArray[i] = 1 - lightBulbArray[i];
-            if (bruteForce(lightBulbArray)) {
-                lightSwitchState = true;
-                return;
-            }
-
-        }
-
-
-        for (int j = 1; j <= numSwitches; j++) {
-            lightBulbArray[j] = 1 - lightBulbArray[j];
-            if(bruteForce(lightBulbArray)){
-                lightSwitchState = true;
-                return;
-            }
-
-        }*/
-
-
     }
 
     private static boolean isOne(int[] lightBulbArray) {
@@ -95,33 +72,6 @@ public class lightbulb {
             }
         }
         return isOne;
-    }
-
-
-    public static boolean bruteForce(int[] input) {
-
-        //Cover the edge cases that the input array is null or has one element.
-        if (input == null || input.length == 1)
-            return true; //Returning true for null is debatable, but I leave that to you.
-
-        int compare = input[0]; //Compare to the first element of the input array.
-
-        //Check from the second element through the end of the input array.
-        for (int i = 1; i < input.length; i++) {
-            if (input[i] != compare)
-                return false;
-        }
-
-        return true;
-
-    }
-
-    public static void returnOrginal(int[] input) {
-
-        for (int i = 0; i < input.length; i++) {
-            input[i] = 1 - i;
-        }
-
     }
 
 

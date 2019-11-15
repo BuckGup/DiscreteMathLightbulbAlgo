@@ -15,8 +15,8 @@ public class lightbulb {
         int numSwitches = userIn.nextInt();
         int[] lightBulbArray = new int[numSwitches];
         int[] binaryArray = new int[numSwitches];
-        String binaryString = Integer.toBinaryString(numSwitches); //converts the num of switches to binary
-        char[] binaryChars = binaryString.toCharArray(); //converts String to char array for use in loop later
+        char[] binaryChars;
+
 
         int counter = 0;
 
@@ -33,16 +33,19 @@ public class lightbulb {
         }
 
 
-      /*  if (isOne(lightBulbArray)) {
+        if (isOne(lightBulbArray)) {
             lightSwitchState = true;
             System.out.println("The light bulb is on");
             return;
-        }*/
+        }
 
         System.out.println("New line converted");
-        for (int j = 0; j < (binaryChars.length); j++) {
+        for (int j = 0; j < Math.pow(2, numSwitches); j++) {
 
-            if(binaryChars[j] == 1) {
+            String binaryString = Integer.toBinaryString(j); //converts the num of switches to binary
+            binaryChars = binaryString.toCharArray(); //converts String to char array for use in loop later
+
+            if(binaryChars[j] == 48) {
                 lightBulbArray[j] = 1 - lightBulbArray[j];
 
                 System.out.println(lightBulbArray[j]);

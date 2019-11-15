@@ -15,7 +15,6 @@ public class lightbulb {
         int numSwitches = userIn.nextInt();
         int[] lightBulbArray = new int[numSwitches];
         int[] binaryArray = new int[numSwitches];
-        String initialize = "" //need loop here to intilize it with zeros
         char[] binaryChars;
 
         int counter = 0;
@@ -26,9 +25,9 @@ public class lightbulb {
         }
 
 
-        for(int i = 0; i < lightBulbArray.length; i++){
+        for (int i = 0; i < lightBulbArray.length; i++) {
+            System.out.print(lightBulbArray[i]);
 
-            System.out.println(lightBulbArray[i]);
 
         }
 
@@ -40,23 +39,29 @@ public class lightbulb {
             return;
         }
 
-        System.out.println("Start of sequence");
+        System.out.println("\nStart of sequence");
         for (int j = 0; j < Math.pow(2, numSwitches); j++) {
 
             String binaryString = Integer.toBinaryString(j); //converts the num of switches to binary
             binaryChars = binaryString.toCharArray(); //converts String to char array for use in loop later
+            reverseArray(lightBulbArray, binaryChars.length);
+            System.out.println(binaryChars);
 
-            if(binaryChars[j] == 49) {
-                lightBulbArray[j] = 1 - lightBulbArray[j];
+            //for (int p = 0; p < binaryChars.length; p++) {
+            for (int p = binaryChars.length - 1; p >= 0; p--) {
 
-                System.out.println(lightBulbArray[j]);
+                if (binaryChars[p] == 49) {
 
-                if(isOne(lightBulbArray)){
-                    lightSwitchState = true;
-                    System.out.println("The light bulb is on");
-                    return;
+                    lightBulbArray[p] = 1 - lightBulbArray[p];//need to count backwards in the array
+
+                    if (isOne(lightBulbArray)) {
+                        lightSwitchState = true;
+                        System.out.println("The light bulb is on");
+                        System.out.println("It took " + j + " tries");
+                        return;
+                    }
+
                 }
-
             }
         }
 
@@ -74,5 +79,15 @@ public class lightbulb {
         return isOne;
     }
 
+
+    static void reverseArray(int a[], int n) {
+        int[] b = new int[n];
+        int j = n;
+        for (int i = 0; i < n; i++) {
+            b[j - 1] = a[i];
+            j = j - 1;
+        }
+
+    }
 
 }

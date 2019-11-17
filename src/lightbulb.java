@@ -27,8 +27,6 @@ public class lightbulb {
 
         for (int i = 0; i < lightBulbArray.length; i++) {
             System.out.print(lightBulbArray[i]);
-
-
         }
 
 
@@ -40,11 +38,12 @@ public class lightbulb {
         }
 
         System.out.println("\nStart of sequence");
+
         for (int j = 0; j < Math.pow(2, numSwitches); j++) {
 
             String binaryString = Integer.toBinaryString(j); //converts the num of switches to binary
             binaryChars = binaryString.toCharArray(); //converts String to char array for use in loop later
-            reverseArray(lightBulbArray, binaryChars.length);
+           // reverseArray(lightBulbArray, binaryChars.length);
             System.out.println(binaryChars);
 
             //for (int p = 0; p < binaryChars.length; p++) {
@@ -52,12 +51,12 @@ public class lightbulb {
 
                 if (binaryChars[p] == 49) {
 
-                    lightBulbArray[p] = 1 - lightBulbArray[p];//need to count backwards in the array
+                    lightBulbArray[p] = 1 - lightBulbArray[p];//flips the switch in the original array
 
                     if (isOne(lightBulbArray)) {
                         lightSwitchState = true;
                         System.out.println("The light bulb is on");
-                        System.out.println("It took " + j + " tries");
+                        System.out.println("It took " + j + " tries"); //use Grays code for the position of the number flipped
                         return;
                     }
 
